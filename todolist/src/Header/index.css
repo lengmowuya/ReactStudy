@@ -1,0 +1,12 @@
+.todo-header {
+  display: flex;
+  padding-bottom: 16px;
+}
+.todo-header input {
+  padding: 8px;
+  flex-grow: 1;
+  border: none;
+  border: 1px solid #ddd;
+  box-shadow: 0px 0px 6px #eee inset;
+  border-radius: 6px;
+}

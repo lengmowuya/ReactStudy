@@ -1,0 +1,17 @@
+.todo-footer {
+  display: flex;
+  justify-content: space-between;
+  user-select: none;
+}
+.todo-footer .clearDone {
+  border: none;
+  background-color: red;
+  color: #fff;
+  border-radius: 4px;
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+.todo-footer .clearDone:hover {
+  opacity: 0.4;
+}

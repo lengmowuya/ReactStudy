@@ -1,0 +1,30 @@
+.list-item{
+    display:flex;
+    justify-content:space-between;
+    border-bottom:1px solid #eee;
+    padding:8px;
+    @item-height:20px;
+    height:@item-height;
+    line-height: @item-height;
+    align-items: center;
+    user-select: none;
+    .delete{
+        color:#fff;
+        background-color: tomato;
+        border:none;
+        border-radius: 4px;
+        display:none;
+        user-select: none;
+        cursor: pointer;
+        transition:all 0.25s;
+        padding:4px;
+        &:hover{
+            opacity: 0.4;
+        }
+    }
+    &:hover{
+        .delete{
+            display:inline-block;
+        }
+    }
+}
