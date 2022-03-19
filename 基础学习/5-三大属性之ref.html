@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>三大属性之ref</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/prop-types@15.8.1/prop-types.js"></script> -->
+</head>
+<body>
+    <!--  -->
+    <div id="App"></div>
+    <script type="text/babel">
+        class Demo extends React.Component{
+            myRef = React.createRef()
+            // 展示旧框点击数据
+            showData = ()=>{
+                const {input1} = this.refs;
+                alert("<旧>" + input1.value);
+            }
+            // 展示旧框失焦数据 event事件对象
+            BlurShowData = (event)=>{
+                alert("<旧>" + event.target.value);
+            }
+            // 展示新框点击数据
+            showData2 = ()=>{
+                // 输出回调赋值的节点
+                const {input3} = this;
+                alert("<新>" + input3.value);
+            }
+            showMe = (currentNode)=>{
+                console.log(currentNode);
+            }
+            showData3 = ()=>{
+                // 该容器为专人专用
+                const {myRef} = this;
+                alert("<最新>" + myRef.current.value);
+            }
+            render(){
+                const {showMe} = this;
+                return (
+                    <div>
+                        <h1>不推荐的ref</h1>
+                         {/* ref 写法已不推荐使用，随时可能废弃 (最老写法) */}
+                        <input ref="input1" type="text" placeholder="点击按钮提示数据" /> <br/>
+                        <button onClick={this.showData}>点我显示上面数据</button> <br/><br/>
+                        <input onBlur={this.BlurShowData}  type="text" placeholder="失去焦点提示数据" />
+
+                        <hr />
+                        <h1>回调函数的ref写法</h1>
+                        <input /* 较新的ref写法(回调函数) */ ref={(currentNode)=>{this.input3 = currentNode}} type="text" />
+                        <span /* 直接放个函数作为回调 */ ref={showMe}></span>
+                        <button onClick={this.showData2}>点我显示最新内容数据</button>
+
+                        <hr />
+                        <h1>最新的ref写法</h1>
+                         {/* React.createRef调用后可以返回一个容器，该容器可以存储被ref所标识的节点 */}
+                        <input ref={this.myRef} type="text" placeholder="最新的ref方式内容"/>
+                        <button onClick={this.showData3}>展示最新Ref内容</button>
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(<Demo/>,document.getElementById("App"));
+    </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>扩展运算符</title>
+</head>
+<body>
+    <script>
+        // 1.在数组中扩展
+        let arr1 = [1,3,5,7,9];
+        let arr2 = [2,4,6,8,10];
+        let arr3 = [...arr1,...arr2];
+        console.log(arr3);
+
+        // 2.在函数中使用
+        function sum(...numbers){
+            return numbers.reduce((preValue,currentValue)=>{
+                return preValue + currentValue;
+            })
+        }
+        console.log(sum(1,2,3,4,5,6,7,8));
+
+        // 3.展开运算符不能直接展开对象
+
+        // 4.字面量形式拷贝一层对象
+        let person = {name:'tom',age:18};
+        let person2 = {...person};
+        person.name = "jerry";
+        person.age = 20;
+        console.log(person,person2);
+
+        // 5.复制对象的同时合并后继修改
+        let person3 = {...person2,name:"Alex"};
+        console.log(person3);
+    </script>
+</body>
+</html>

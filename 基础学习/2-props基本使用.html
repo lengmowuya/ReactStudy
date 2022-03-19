@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Props基本使用</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prop-types@15.8.1/prop-types.js"></script>
+</head>
+<body>
+    <div id="App1"></div>
+    <div id="App2"></div>
+    <div id="App3"></div>
+    <script type="text/babel">
+        class Person extends React.Component{
+            // props对传参的类型限制，必要性限制
+            static propTypes = {
+                age:PropTypes.number,
+                // sex:PropTypes.string.isRequired
+                speak:PropTypes.func
+            }
+            static defaultProps = {
+                age:0
+            }
+            // state = {name:'alice'}
+            render(){
+                const {name,age,sex,speak} = this.props
+                return (
+                    <ul onClick={speak}>
+                        <li>姓名:{name}</li>
+                        <li>虚岁:{age+1}</li>
+                        <li>性别:{sex||"保密"}</li>
+                    </ul>
+                )
+            }
+        }
+        function TomSay(){
+            console.log("Hello,World!");
+        }
+        function LiDaHuaSay(){
+            console.log("你好，世界！");
+        }
+        function JapaneseSay(){
+            console.log("こんにちは世界！");
+        }
+        // 扩展填入
+        let JapanesePerson = {name:"大田明華",age:38,speak:JapaneseSay}
+        ReactDOM.render(<Person name="Tom"  speak={TomSay} />,document.getElementById("App1"))
+        ReactDOM.render(<Person name="李大花" age={23} sex="女" speak={LiDaHuaSay} />,document.getElementById("App2"))
+        ReactDOM.render(<Person {...JapanesePerson} />,document.getElementById("App3"))
+    </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>函数式组件</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prop-types@15.8.1/prop-types.js"></script>
+</head>
+<body>
+    <div id="App"></div>
+    <script type="text/babel">
+        function Person (props){
+            const {name,age,sex} = props
+            return (
+                <ul>
+                    <li>姓名:{name}</li>
+                    <li>性别:{sex}</li>
+                    <li>年龄:{age}</li>
+                </ul>
+            )
+        }
+        Person.propTypes = {
+            name:PropTypes.string.isRequired
+        }
+        Person.defaultProps = {
+            sex:"男"
+        }
+        ReactDOM.render(<Person name="jerry" sex="女" age={18}/>,document.getElementById('App'));
+    </script>
+</body>
+</html>

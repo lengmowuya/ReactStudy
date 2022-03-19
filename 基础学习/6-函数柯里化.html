@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>函数柯里化</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+    <div id="App"></div>
+    <script type="text/babel">
+        /* 
+            如果一个函数参数是函数，或者返回值是一个函数，这这个函数即称之为高阶函数
+        */
+        class Form extends React.Component{
+            state = {username:'',passward:''}
+            /* 
+                函数的柯里化：通过函数调用继续返回函数的方式，实现多次接收参数最后统一处理的函数编码形式
+            */
+            saveFormData(dataName){
+                return (event)=>{
+                    const value = event.target.value;
+                    console.log(value);
+                    this.setState({[dataName]:value})
+                }
+            }
+            handleSubmit = (event)=>{
+                // 阻止表单提交
+                event.preventDefault()
+                const {username,passward} = this.state;
+                alert(username+passward);
+            }
+            render(){
+                return (
+                    <form onSubmit={this.handleSubmit}>
+                        用户名<input type="text" onChange={this.saveFormData('username')} name="username"/>    
+                        密码  <input type="text" onChange={this.saveFormData('passward')} passward="passward"/>
+                        <button>提交</button>
+                    </form>
+                )
+            }
+        }
+        ReactDOM.render(<Form/>,document.getElementById("App"));
+    </script>
+</body>
+</html>

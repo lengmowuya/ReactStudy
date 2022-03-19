@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>生命周期函数</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+
+<body>
+    <!-- 应该使用数据的唯一标识作为key -->
+    <div id="App"></div>
+    <script type="text/babel">
+        let AppNode = document.getElementById("App");
+        /* 
+            生命周期三大阶段：
+            1.初始化阶段
+                1.constructor
+                2.getDerivedStateFromProps
+                3.render
+                4.componentDidMount(常用)
+            2.更新阶段
+                1.getDerivedStateFromProps
+                2.shouldComponentUpdate
+                3.render
+                4.getSnapshotBeforeUpdate
+                5.componentDidUpdate
+            3.卸载阶段
+                1.componentWillUnmount(常用)
+        */
+        class Demo extends React.Component {
+            state = { opacity: 1 }
+            death = () => {
+                let deathTime = setInterval(() => {
+                    let { opacity } = this.state;
+                    opacity -= 0.02;
+                    this.setState({ opacity: opacity });
+                    if (opacity <= 0) {
+                        killme();
+                    }
+                }, 100);
+                // 关停并卸载组件
+                function killme() {
+                    clearInterval(deathTime);
+                    ReactDOM.unmountComponentAtNode(AppNode);
+                }
+            }
+            // （初始化）组件挂载完毕
+            componentDidMount() {
+                console.log("组件挂载完毕");
+            }
+
+            // (更新)（了解即可）派生状态：得到props并可将其覆盖为state
+            // 使用情况：state的值在任何时候都取决于props，那么可以使用该生命周期
+            static getDerivedStateFromProps(props, state) {
+                console.log("getDerivedStateFromProps");
+                // return props
+                // 不想影响state时返回null
+                return null
+            }
+            // (更新)页面即将渲染前的生命周期函数
+            // 使用情况：在页面更新前获得当前DOM的一些情况，如滚轮等
+            // 此生命周期的任何返回值都将作为参数返回给componentDisUpdate()生命周期
+            getSnapshotBeforeUpdate() {
+                console.log("getSnapshotBeforeUpdate");
+                return 'no'
+            }
+            // (更新)组件更新完毕的钩子
+            componentDidUpdate(preProps,preState,shot){
+                console.log("组件更新完毕",preProps,preState,shot);
+            }
+            // (初始化、更新)调用时机：初始化渲染，状态更新之后
+            render() {
+                return (
+                    <div>
+                        <h1 style={{ opacity: this.state.opacity }}>React生命周期</h1>
+                        <button onClick={this.death}>变化</button>
+                    </div>
+                )
+            }
+            // （卸载）组件将要被卸载
+            componentWillUnmount() {
+                console.log("组件准备卸载");
+            }
+        }
+        ReactDOM.render(<Demo opacity={0.3} />, AppNode);
+    </script>
+</body>
+
+</html>
