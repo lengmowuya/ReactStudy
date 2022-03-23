@@ -2,6 +2,10 @@
   display: flex;
   justify-content: space-between;
   user-select: none;
+  margin-top: 20px;
+}
+.todo-footer input {
+  margin-right: 6px;
 }
 .todo-footer .clearDone {
   border: none;

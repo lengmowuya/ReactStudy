@@ -2,11 +2,24 @@
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid #eee;
-  padding: 8px;
-  height: 20px;
-  line-height: 20px;
+  line-height: 26px;
   align-items: center;
   user-select: none;
+  padding: 0px 10px;
+  transition: all 0.25s;
+}
+.list-item:hover {
+  background: #f6f6f6;
+}
+.list-item label {
+  flex-grow: 1;
+  flex-shrink: 0;
+  padding: 8px 0px;
+  cursor: pointer;
+  font-size: 16px;
+}
+.list-item label input {
+  margin: 0px 8px;
 }
 .list-item .delete {
   color: #fff;
@@ -18,6 +31,7 @@
   cursor: pointer;
   transition: all 0.25s;
   padding: 4px;
+  font-size: 12px;
 }
 .list-item .delete:hover {
   opacity: 0.4;
