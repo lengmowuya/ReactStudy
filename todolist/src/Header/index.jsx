@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import './index.css'
-
 export default class Header extends Component {
+    static propTypes = {
+        addTodo:PropTypes.func.isRequired
+    }
     handleKeyUp = (event)=>{
         const {keyCode,target} = event;
         const {addTodo} = this.props;
@@ -14,7 +17,7 @@ export default class Header extends Component {
     }
     render() {
         return (
-            <div class="todo-header">
+            <div className="todo-header">
                 <input onKeyUp={this.handleKeyUp} type="text" placeholder="请输入新任务" />
             </div>
         )

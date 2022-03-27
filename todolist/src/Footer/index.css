@@ -15,6 +15,10 @@
   padding: 6px 12px;
   cursor: pointer;
   transition: all 0.25s;
+  opacity: 0.4;
+}
+.todo-footer .clearDone.active {
+  opacity: 1;
 }
 .todo-footer .clearDone:hover {
   opacity: 0.4;
