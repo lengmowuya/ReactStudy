@@ -1,7 +1,25 @@
+.jumbotron {
+  border-radius: 0 !important;
+  background-color: #24292f;
+}
+.jumbotron h3 {
+  color: #ffffff;
+  margin-top: 10px;
+}
+.jumbotron input {
+  border: 1px solid #57606a;
+  background-color: transparent;
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 6px;
+  transition: all 0.25s;
+  width: 200px;
+}
+.jumbotron input:focus {
+  width: 320px;
+}
 .album {
   min-height: 50rem;
-  /* Can be removed; just added for demo purposes */
   padding-top: 3rem;
   padding-bottom: 3rem;
-  background-color: #f7f7f7;
 }

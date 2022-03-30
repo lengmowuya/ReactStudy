@@ -1,14 +1,23 @@
+.row {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
 .card {
   float: left;
-  width: 33.333%;
+  width: 30.333%;
   padding: 0.75rem;
-  margin-bottom: 2rem;
-  border: 1px solid #efefef;
+  margin: 1rem;
+  border: 1px solid #eee;
   text-align: center;
+  border-radius: 5px;
+  box-sizing: border-box;
+  flex-grow: 1;
 }
-.card > img {
-  margin-bottom: 0.75rem;
-  border-radius: 100px;
+.card img {
+  margin-top: 1rem;
+  border-radius: 5px;
+  box-shadow: 0px 0px 6px #eee;
 }
 .card-text {
   font-size: 85%;
