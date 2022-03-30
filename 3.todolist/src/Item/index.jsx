@@ -9,11 +9,12 @@ export default class Item extends Component {
         deleteTodo:PropTypes.func.isRequired
     }
     // 勾选状态事件
-    handleCheck = (id)=>{
-        return ()=>{
+    handleCheck = (e,id)=>{
+        // return ()=>{
+            console.log(e);
             const done = this.checkbox.current.checked;
             this.props.updateTodo(id,done)
-        }
+        // }
     }
     deleteMySelf = (todo)=>{
         return ()=>{
@@ -25,7 +26,8 @@ export default class Item extends Component {
         const { todo } = this.props
         return (
             <div className="list-item">
-                <label  className="info" onChange={this.handleCheck(todo.id)}>
+                {/* <label  className="info" onChange={this.handleCheck(todo.id)}> */}
+                <label  className="info" onChange={(e)=>this.handleCheck(e,todo.id)}>
                     <input type="checkbox" checked={todo.done} onChange={()=>{}} ref={this.checkbox}/>{todo.name}
                 </label>
                 <button className="delete" onClick={this.deleteMySelf(todo)}>删除任务</button>
