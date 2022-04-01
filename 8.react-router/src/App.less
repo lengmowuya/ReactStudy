@@ -1,0 +1,25 @@
+.container{
+    display:flex;
+    .Nav{
+        display:flex;
+        flex-direction: column;
+        margin-right:10px;
+        background:#eee;
+        border-radius: 6px;
+        height:200px;
+        padding:10px 10px;
+        a{
+            padding:10px;
+            text-decoration: none;
+            color:#000;
+            transition: all 0.25s;
+            border-radius: 6px;
+            &:hover{
+                background:#ccc;
+            }
+            &.action{
+                background:#999;
+            }
+        }
+    }
+}
