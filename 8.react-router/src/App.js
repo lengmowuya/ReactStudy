@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {NavLink,Route} from 'react-router-dom'
+import {NavLink,Route,Direct} from 'react-router-dom'
 import About from './pages/About/index'
 import Home from './pages/Home/index'
 import Header from './components/Header/index'

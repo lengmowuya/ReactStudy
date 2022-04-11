@@ -16,10 +16,12 @@
   color: #000;
   transition: all 0.25s;
   border-radius: 6px;
+  margin-bottom: 10px;
 }
 .container .Nav a:hover {
-  background: #ccc;
+  background: rgba(255, 99, 71, 0.5);
 }
 .container .Nav a.action {
-  background: #999;
+  background: tomato;
+  color: #fff;
 }
