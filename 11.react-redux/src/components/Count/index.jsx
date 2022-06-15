@@ -6,19 +6,24 @@ export default class Count extends Component {
   // 加
   increment = () =>{
     const {value} = this.selectNumber
-    this.props.add(value);
+    this.props.increment(value);
   }
   // 减
   decrement = () =>{
     const {value} = this.selectNumber
+    this.props.decrement(value);
   }
   // 是奇数就加
   incrementIfOdd = () =>{
     const {value} = this.selectNumber
+    if(this.props.count%2 !== 0){
+      this.props.increment(value);
+    }
   }
   // 异步加
   incrementAsync = () =>{
     const {value} = this.selectNumber
+    this.props.incrementAsync(value,500);
   }
   render() {
     console.log(this.props)
