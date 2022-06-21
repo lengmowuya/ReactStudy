@@ -33,7 +33,6 @@ function ButtonList(){
     return (
         <div>
             {/* <button onClick={()=>{dispatch({type:UPDATE_COLOR,color:"red"})}}>Red</button> */}
-
             <ColorButton color="yellow"/>
             <ColorButton color="gold"/>
             <ColorButton color="purple"/>
